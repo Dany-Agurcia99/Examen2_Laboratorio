@@ -6,6 +6,9 @@
 package examenlab_2;
 
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,6 +18,10 @@ public class Principal extends javax.swing.JFrame {
 
     public Principal() {
         initComponents();
+        aa.cargarArchivo();
+        ap.cargarArchivo();
+        AddAstronautaTabla();
+        AddPlanetaTabla();
     }
 
     @SuppressWarnings("unchecked")
@@ -82,10 +89,13 @@ public class Principal extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
+        popup = new javax.swing.JPopupMenu();
+        Eliminar = new javax.swing.JMenuItem();
+        Modificar = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaPlanetas = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        TablaAstronautas = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -98,6 +108,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel4.setText("Superficie");
 
         buttonGroup1.add(rb_siPlaneta);
+        rb_siPlaneta.setSelected(true);
         rb_siPlaneta.setText("Si");
 
         buttonGroup1.add(rb_noPlaneta);
@@ -108,6 +119,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel6.setText("Distancia");
 
         jButton5.setText("Agregar Planeta");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout ventana_planetasLayout = new javax.swing.GroupLayout(ventana_planetas.getContentPane());
         ventana_planetas.getContentPane().setLayout(ventana_planetasLayout);
@@ -181,12 +197,18 @@ public class Principal extends javax.swing.JFrame {
         jLabel12.setText("Experiencia");
 
         buttonGroup2.add(rb_MAstro);
+        rb_MAstro.setSelected(true);
         rb_MAstro.setText("M");
 
         buttonGroup2.add(rb_FAstro);
         rb_FAstro.setText("F");
 
         jButton6.setText("Agregar Astronauta");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout ventana_astronautasLayout = new javax.swing.GroupLayout(ventana_astronautas.getContentPane());
         ventana_astronautas.getContentPane().setLayout(ventana_astronautasLayout);
@@ -460,9 +482,15 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(107, Short.MAX_VALUE))
         );
 
+        Eliminar.setText("Eliminar");
+        popup.add(Eliminar);
+
+        Modificar.setText("Modificar");
+        popup.add(Modificar);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaPlanetas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -470,9 +498,9 @@ public class Principal extends javax.swing.JFrame {
                 "Nombre", "Temperatura", "Anillos", "Superficie", "Distancia"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TablaPlanetas);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        TablaAstronautas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -480,7 +508,7 @@ public class Principal extends javax.swing.JFrame {
                 "Nombre", "Nacionalidad", "Sueldo", "Sexo", "Peso", "Experiencia"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(TablaAstronautas);
 
         jButton1.setText("Expedicion");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -560,40 +588,133 @@ public class Principal extends javax.swing.JFrame {
         ventana_planetas.setVisible(true);
     }//GEN-LAST:event_jButton2MouseClicked
 
+    //Ventana Astronauta
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         ventana_astronautas.pack();
         ventana_astronautas.setLocationRelativeTo(this);
         ventana_astronautas.setModal(true);
         ventana_astronautas.setVisible(true);
     }//GEN-LAST:event_jButton3MouseClicked
-
+    //Ventana Escoger
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         ventana_escoger.pack();
         ventana_escoger.setLocationRelativeTo(this);
         ventana_escoger.setModal(true);
         ventana_escoger.setVisible(true);
     }//GEN-LAST:event_jButton4MouseClicked
-
+    //Ventana Nave Sonda
     private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
         ventana_naves_sonda.pack();
         ventana_naves_sonda.setLocationRelativeTo(this);
         ventana_naves_sonda.setModal(true);
         ventana_naves_sonda.setVisible(true);
     }//GEN-LAST:event_jButton9MouseClicked
-
+    //Ventana Nave Tripulada
     private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
         ventana_naves_tripulada.pack();
         ventana_naves_tripulada.setLocationRelativeTo(this);
         ventana_naves_tripulada.setModal(true);
         ventana_naves_tripulada.setVisible(true);
     }//GEN-LAST:event_jButton10MouseClicked
-
+    //Ventana Expedicion
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         ventana_expedicion.pack();
         ventana_expedicion.setLocationRelativeTo(this);
         ventana_expedicion.setModal(true);
         ventana_expedicion.setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
+    //Agregra Planetas
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        String anillos;
+        if (rb_siPlaneta.isSelected()) {
+            anillos = "Si";
+        } else {
+            anillos = "No";
+        }
+        Planeta p = new Planeta(tf_nombrePlaneta.getText(), Integer.parseInt(tf_tempPlaneta.getText()), anillos, tf_superficiePlaneta.getText(), Integer.parseInt(tf_distanciaPlaneta.getText()));
+        ap.cargarArchivo();
+        ap.setPlaneta(p);
+        ap.escribirArchivo();
+        AddPlanetaTabla();
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_planetasSonda.getModel();
+        DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) cb_planetaTripulada.getModel();
+        modelo.addElement(p);
+        modelo2.addElement(p);
+        cb_planetaTripulada.setModel(modelo2);
+        cb_planetasSonda.setModel(modelo);
+        tf_nombrePlaneta.setText("");
+        tf_tempPlaneta.setText("");
+        tf_superficiePlaneta.setText("");
+        tf_distanciaPlaneta.setText("");
+        JOptionPane.showMessageDialog(this, "Planeta Agregado Exitosamente");
+        ventana_planetas.dispose();
+    }//GEN-LAST:event_jButton5MouseClicked
+    //Agregar Astronautas
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        String sexo;
+        if (rb_MAstro.isSelected()) {
+            sexo = "M";
+        } else {
+            sexo = "F";
+        }
+        int experiencia = (int) sp_expAstro.getValue();
+        Astronauta a = new Astronauta(tf_nombreAstro.getText(), tf_nacionalidadAstro.getText(), Integer.parseInt(tf_sueloAstro.getText()), sexo, Integer.parseInt(tf_pesoAstro.getText()), experiencia);
+        aa.cargarArchivo();
+        aa.setAstronauta(a);
+        aa.escribirArchivo();
+        AddAstronautaTabla();
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_astronautasTripulada.getModel();
+        modelo.addElement(a);
+        cb_astronautasTripulada.setModel(modelo);
+        tf_nombreAstro.setText("");
+        tf_nacionalidadAstro.setText("");
+        tf_sueloAstro.setText("");
+        tf_pesoAstro.setText("");
+        sp_expAstro.setValue(0);
+        JOptionPane.showMessageDialog(this, "Astronauta Agregado Exitosamente");
+        ventana_astronautas.dispose();
+    }//GEN-LAST:event_jButton6MouseClicked
+
+    private void AddPlanetaTabla() {
+        TablaPlanetas.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Nombre", "Temperatura", "Anillos", "Superficie", "Distancia"
+                }
+        ));
+        DefaultTableModel modelo = (DefaultTableModel) TablaPlanetas.getModel();
+        for (Planeta p : ap.getListaPlanetas()) {
+            Object[] row = new Object[5];
+            row[0] = p.getNombre();
+            row[1] = p.getTemperatura();
+            row[2] = p.getAnillos();
+            row[3] = p.getTipo_s();
+            row[4] = p.getDistancia();
+            modelo.addRow(row);
+        }
+        TablaPlanetas.setModel(modelo);
+    }
+
+    private void AddAstronautaTabla() {
+        TablaAstronautas.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Nombre", "Nacionalidad", "Sueldo", "Sexo", "Peso", "Experiencia"
+                }
+        ));
+        DefaultTableModel modelo = (DefaultTableModel) TablaAstronautas.getModel();
+        for (Astronauta a : aa.getListaAstronautas()) {
+            Object[] row = new Object[6];
+            row[0] = a.getNombre();
+            row[1] = a.getNacionalidad();
+            row[2] = a.getSueldo();
+            row[3] = a.getSexo();
+            row[4] = a.getPeso();
+            row[5] = a.getExperiencia();
+            modelo.addRow(row);
+        }
+        TablaAstronautas.setModel(modelo);
+    }
 
     public static void main(String args[]) {
 
@@ -621,12 +742,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
-    ArrayList<Astronauta> lista_astronautas = new ArrayList();
-    ArrayList<Planeta> lista_planetas = new ArrayList();
     ArrayList<Nave> lista_naves = new ArrayList();
     Admin_Planetas ap = new Admin_Planetas("./Planetas.txt");
     Admin_Astronautas aa = new Admin_Astronautas("./Astronautas.txt");
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Eliminar;
+    private javax.swing.JMenuItem Modificar;
+    private javax.swing.JTable TablaAstronautas;
+    private javax.swing.JTable TablaPlanetas;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox<String> cb_astronautasTripulada;
@@ -668,8 +791,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JPopupMenu popup;
     private javax.swing.JRadioButton rb_FAstro;
     private javax.swing.JRadioButton rb_MAstro;
     private javax.swing.JRadioButton rb_noPlaneta;

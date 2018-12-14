@@ -17,7 +17,7 @@ public class Admin_Astronautas {
         archivo = new File(path);
     }
 
-    public ArrayList<Astronauta> getListaPersonas() {
+    public ArrayList<Astronauta> getListaAstronautas() {
         return lista_astronautas;
     }
 
@@ -34,7 +34,7 @@ public class Admin_Astronautas {
     }
 
     //extras
-    public void setPersona(Astronauta a) {
+    public void setAstronauta(Astronauta a) {
         this.lista_astronautas.add(a);
     }
 

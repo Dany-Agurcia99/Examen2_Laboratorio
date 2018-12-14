@@ -17,7 +17,7 @@ public class Admin_Planetas {
         archivo = new File(path);
     }
 
-    public ArrayList<Planeta> getListaPersonas() {
+    public ArrayList<Planeta> getListaPlanetas() {
         return lista_planetas;
     }
 
