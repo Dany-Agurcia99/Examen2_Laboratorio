@@ -1,6 +1,8 @@
 package examenlab_2;
 
-public class Astronauta {
+import java.io.Serializable;
+
+public class Astronauta implements Serializable {
 
     String nombre;
     String nacionalidad;
@@ -8,6 +10,7 @@ public class Astronauta {
     String sexo;
     int peso;
     int experiencia;
+    private static final long serialVersionUID = 777L;
 
     public Astronauta() {
     }

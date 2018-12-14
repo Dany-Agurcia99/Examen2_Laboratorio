@@ -1,12 +1,15 @@
 package examenlab_2;
 
-public class Planeta {
+import java.io.Serializable;
+
+public class Planeta implements Serializable {
 
     private String nombre;
     private int temperatura;
     private String anillos;
     private String tipo_s;
     private int distancia;
+    private static final long serialVersionUID = 888L;
 
     public Planeta() {
     }

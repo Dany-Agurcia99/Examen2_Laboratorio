@@ -62,10 +62,8 @@ public class Principal extends javax.swing.JFrame {
         tf_pesoSonda = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
         ventana_expedicion = new javax.swing.JDialog();
-        jLabel1 = new javax.swing.JLabel();
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        jLabel16 = new javax.swing.JLabel();
+        cb_naves = new javax.swing.JComboBox<>();
+        jButton11 = new javax.swing.JButton();
         ventana_naves_tripulada = new javax.swing.JDialog();
         tf_velocidadTripulada = new javax.swing.JTextField();
         tf_serieTripulada = new javax.swing.JTextField();
@@ -82,6 +80,8 @@ public class Principal extends javax.swing.JFrame {
         jLabel24 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -323,20 +323,28 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
+        jButton11.setText("Comenzar Expedicion");
+
         javax.swing.GroupLayout ventana_expedicionLayout = new javax.swing.GroupLayout(ventana_expedicion.getContentPane());
         ventana_expedicion.getContentPane().setLayout(ventana_expedicionLayout);
         ventana_expedicionLayout.setHorizontalGroup(
             ventana_expedicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(ventana_expedicionLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(cb_naves, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         ventana_expedicionLayout.setVerticalGroup(
             ventana_expedicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(ventana_expedicionLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(ventana_expedicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cb_naves, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton11))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
-
-        jLabel1.setText("jLabel1");
-
-        jLabel16.setText("jLabel16");
 
         jLabel19.setText("Serie");
 
@@ -475,6 +483,11 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable2);
 
         jButton1.setText("Expedicion");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton2.setText("Agregar Planeta");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -506,12 +519,12 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(292, 292, 292))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(88, 88, 88)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
@@ -524,6 +537,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
                         .addComponent(jButton2)
                         .addGap(17, 17, 17)
                         .addComponent(jButton3)
@@ -574,6 +588,13 @@ public class Principal extends javax.swing.JFrame {
         ventana_naves_tripulada.setVisible(true);
     }//GEN-LAST:event_jButton10MouseClicked
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        ventana_expedicion.pack();
+        ventana_expedicion.setLocationRelativeTo(this);
+        ventana_expedicion.setModal(true);
+        ventana_expedicion.setVisible(true);
+    }//GEN-LAST:event_jButton1MouseClicked
+
     public static void main(String args[]) {
 
         try {
@@ -603,14 +624,18 @@ public class Principal extends javax.swing.JFrame {
     ArrayList<Astronauta> lista_astronautas = new ArrayList();
     ArrayList<Planeta> lista_planetas = new ArrayList();
     ArrayList<Nave> lista_naves = new ArrayList();
+    Admin_Planetas ap = new Admin_Planetas("./Planetas.txt");
+    Admin_Astronautas aa = new Admin_Astronautas("./Astronautas.txt");
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox<String> cb_astronautasTripulada;
+    private javax.swing.JComboBox<String> cb_naves;
     private javax.swing.JComboBox<String> cb_planetaTripulada;
     private javax.swing.JComboBox<String> cb_planetasSonda;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -619,14 +644,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
