@@ -133,7 +133,7 @@ public class Principal extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaNaves = new javax.swing.JTable();
 
         jLabel2.setText("Nombre");
 
@@ -383,6 +383,11 @@ public class Principal extends javax.swing.JFrame {
         );
 
         jButton11.setText("Comenzar Expedicion");
+        jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton11MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout ventana_expedicionLayout = new javax.swing.GroupLayout(ventana_expedicion.getContentPane());
         ventana_expedicion.getContentPane().setLayout(ventana_expedicionLayout);
@@ -789,7 +794,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaNaves.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -797,7 +802,7 @@ public class Principal extends javax.swing.JFrame {
                 "Tiempo Ida", "Tiempo Vuelta", "Estado"
             }
         ));
-        jScrollPane3.setViewportView(jTable1);
+        jScrollPane3.setViewportView(TablaNaves);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1109,6 +1114,13 @@ public class Principal extends javax.swing.JFrame {
         ventana_modificar_astro.dispose();
     }//GEN-LAST:event_jButton13MouseClicked
 
+    private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_naves.getModel();
+        ne = (Nave) modelo.getSelectedItem();
+        Expedicion ex = new Expedicion(ne, ne.getP(), true, true, TablaNaves);
+        ex.start();
+    }//GEN-LAST:event_jButton11MouseClicked
+
     private void AddPlanetaTabla() {
         ap.cargarArchivo();
         TablaPlanetas.setModel(new javax.swing.table.DefaultTableModel(
@@ -1206,6 +1218,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem ModificarAstro;
     private javax.swing.JMenuItem ModificarPlaneta;
     private javax.swing.JTable TablaAstronautas;
+    private javax.swing.JTable TablaNaves;
     private javax.swing.JTable TablaPlanetas;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -1262,7 +1275,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPopupMenu popupAstronautas;
     private javax.swing.JPopupMenu popupPlanetas;
     private javax.swing.JRadioButton rb_FAstro;
