@@ -62,7 +62,8 @@ public class Nave_Tripulada extends Nave {
     @Override
     public int[] CalcularTiempos(int distancia, double velocidad, int pesos) {
         int[] tiempos = new int[2];
-
+        tiempos[0] = (int) (distancia / (velocidad * ((pesos * pesos) / 100)));
+        tiempos[1] = (int) (distancia / (velocidad * (pesos / 100)));
         return tiempos;
     }
 

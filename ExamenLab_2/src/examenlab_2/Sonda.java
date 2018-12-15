@@ -19,8 +19,6 @@ public class Sonda extends Nave {
         this.peso = peso;
     }
 
-    
-
     public String getMaterial() {
         return Material;
     }
@@ -64,7 +62,8 @@ public class Sonda extends Nave {
     @Override
     public int[] CalcularTiempos(int distancia, double velocidad, int pesos) {
         int[] tiempos = new int[2];
-
+        tiempos[0] = (int) (distancia / velocidad);
+        tiempos[1] = (int) (9.8 * velocidad);
         return tiempos;
     }
 
