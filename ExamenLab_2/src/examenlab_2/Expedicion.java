@@ -90,7 +90,8 @@ public class Expedicion extends Thread {
                     row[2] = "Arrivo a casa";
                     modelo.addRow(row);
                     t.setModel(modelo);
-                    avanzar = true;
+                    avanzar = false;
+                    vive = false;
                     vali = 0;
                 }
                 try {
