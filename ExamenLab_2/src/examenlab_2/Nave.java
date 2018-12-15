@@ -1,10 +1,13 @@
 package examenlab_2;
 
-public class Nave {
+import java.io.Serializable;
+
+public class Nave implements Serializable {
 
     int serie;
     Planeta p;
     double velocidad;
+    private static final long serialVersionUID = 999L;
 
     public Nave() {
     }

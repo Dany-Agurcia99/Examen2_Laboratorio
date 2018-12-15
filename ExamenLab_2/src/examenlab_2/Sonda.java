@@ -13,6 +13,14 @@ public class Sonda extends Nave {
         this.peso = peso;
     }
 
+    public Sonda(String Material, int peso, int serie, Planeta p, double velocidad) {
+        super(serie, p, velocidad);
+        this.Material = Material;
+        this.peso = peso;
+    }
+
+    
+
     public String getMaterial() {
         return Material;
     }

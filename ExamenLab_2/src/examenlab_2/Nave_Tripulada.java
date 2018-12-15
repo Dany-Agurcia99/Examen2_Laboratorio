@@ -14,6 +14,11 @@ public class Nave_Tripulada extends Nave {
         this.lugar_despeje = lugar_despeje;
     }
 
+    public Nave_Tripulada(String lugar_despeje, int serie, Planeta p, double velocidad) {
+        super(serie, p, velocidad);
+        this.lugar_despeje = lugar_despeje;
+    }
+
     public String getLugar_despeje() {
         return lugar_despeje;
     }
@@ -57,7 +62,7 @@ public class Nave_Tripulada extends Nave {
     @Override
     public int[] CalcularTiempos(int distancia, double velocidad, int pesos) {
         int[] tiempos = new int[2];
-        
+
         return tiempos;
     }
 
