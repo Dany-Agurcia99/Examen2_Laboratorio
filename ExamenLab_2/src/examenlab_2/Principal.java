@@ -1176,6 +1176,7 @@ public class Principal extends javax.swing.JFrame {
     ArrayList<Nave> lista_naves = an.getLista_Naves();
     Planeta pm;
     Astronauta am;
+    Nave ne;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem EliminarAstro;
     private javax.swing.JMenuItem EliminarPlaneta;
